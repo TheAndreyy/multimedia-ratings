@@ -1,4 +1,4 @@
-package com.example.ratingsapi
+package com.example.ratingsworker
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @SpringBootApplication
-class RatingsApiApplication {
+class RatingsWorkerApplication {
 
     @GetMapping("/")
     fun hello() = ResponseEntity
-            .ok()
-            .body("Hello from API!")
+        .ok()
+        .body("Hello from Worker!")
 }
 
 fun main(args: Array<String>) {
-    runApplication<RatingsApiApplication>(*args)
+    runApplication<RatingsWorkerApplication>(*args)
 }
