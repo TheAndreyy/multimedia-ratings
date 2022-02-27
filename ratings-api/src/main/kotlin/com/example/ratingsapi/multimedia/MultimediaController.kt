@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController
 class MultimediaController(val multimediaService: MultimediaService) {
 
     @PostMapping
-    fun addMultimedia(@RequestBody multimediaDto: MultimediaDto): ResponseEntity<String> {
+    fun addMultimedia(@RequestBody multimediaDto: MultimediaDto): ResponseEntity<Void> {
         multimediaService.addMultimedia(multimediaDto)
         return ResponseEntity.accepted().build()
     }
@@ -22,4 +22,10 @@ class MultimediaController(val multimediaService: MultimediaService) {
     fun getMultimedia(@RequestParam title: String) = ResponseEntity.ok().body(
         multimediaService.getMultimediaByTitle(title)
     )
+
+    @PostMapping("/send")
+    fun sendMultimedia(@RequestBody multimediaDto: MultimediaDto): ResponseEntity<Void> {
+        multimediaService.sendMultimedia(multimediaDto)
+        return ResponseEntity.accepted().build()
+    }
 }

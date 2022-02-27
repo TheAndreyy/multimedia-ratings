@@ -31,6 +31,6 @@ data class MultimediaDto(
 )
 
 @Repository
-interface MultimediaRepository: MongoRepository<Multimedia, String> {
+interface MultimediaRepository : MongoRepository<Multimedia, String> {
     fun findAllByTitle(title: String): List<Multimedia>
 }
