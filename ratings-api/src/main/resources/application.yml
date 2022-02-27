@@ -1,1 +1,10 @@
-
+spring:
+    data:
+        mongodb:
+            authentication-database: admin
+            username: root
+            password: pass
+            database: ratings
+            host: localhost
+            port: 27017
+            auto-index-creation: true
