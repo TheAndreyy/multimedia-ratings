@@ -8,3 +8,5 @@ spring:
             host: localhost
             port: 27017
             auto-index-creation: true
+    kafka:
+        bootstrap-servers: localhost:9092
