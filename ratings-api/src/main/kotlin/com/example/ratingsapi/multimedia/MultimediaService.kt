@@ -17,7 +17,7 @@ class MultimediaService(val multimediaRepository: MultimediaRepository, val kafk
     fun getMultimediaByTitle(title: String) = multimediaRepository.findAllByTitle(title)
 
     fun sendMultimedia(multimediaDto: MultimediaDto) {
-        kafkaTemplate.send("Test", multimediaDto)
+        kafkaTemplate.send("Test3", multimediaDto)
         logger.info {"Test send succesful"}
     }
 

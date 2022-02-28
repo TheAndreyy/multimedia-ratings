@@ -23,6 +23,7 @@ class KafkaProducerConfig(
         config[ProducerConfig.BOOTSTRAP_SERVERS_CONFIG] = bootstrapServers
         config[ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG] = StringSerializer::class.java
         config[ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG] = JsonSerializer::class.java
+        config[JsonSerializer.TYPE_MAPPINGS] = "multimedia:com.example.ratingsapi.multimedia.MultimediaDto"
         return config
     }
 

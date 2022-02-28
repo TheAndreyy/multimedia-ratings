@@ -8,6 +8,6 @@ import org.springframework.kafka.config.TopicBuilder
 class KafkaTopicConfig {
 
     @Bean
-    fun testTopic() = TopicBuilder.name("Test").build()
+    fun testTopic() = TopicBuilder.name("Test3").build()
 
 }
