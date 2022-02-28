@@ -7,7 +7,13 @@ import org.springframework.kafka.config.TopicBuilder
 @Configuration
 class KafkaTopicConfig {
 
+    companion object {
+        const val TEST_TOPIC = "Test3"
+    }
+
     @Bean
-    fun testTopic() = TopicBuilder.name("Test3").build()
+    fun testTopic() = TopicBuilder
+        .name(TEST_TOPIC)
+        .build()
 
 }

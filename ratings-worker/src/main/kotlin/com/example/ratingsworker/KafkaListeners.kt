@@ -6,12 +6,13 @@ import org.springframework.kafka.annotation.KafkaListener
 import org.springframework.stereotype.Component
 
 private val logger = KotlinLogging.logger {}
+private const val TEST_TOPIC = "Test3"
 
 @Component
 class KafkaListeners {
 
     @KafkaListener(
-        topics = ["Test3"],
+        topics = [TEST_TOPIC],
         groupId = "default",
         containerFactory = "kafkaListenerFactory"
     )

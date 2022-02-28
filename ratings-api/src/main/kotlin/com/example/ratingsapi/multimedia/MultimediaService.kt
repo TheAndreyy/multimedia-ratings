@@ -1,5 +1,6 @@
 package com.example.ratingsapi.multimedia
 
+import com.example.ratingsapi.config.KafkaTopicConfig
 import mu.KotlinLogging
 import org.springframework.kafka.core.KafkaTemplate
 import org.springframework.stereotype.Service
@@ -17,7 +18,7 @@ class MultimediaService(val multimediaRepository: MultimediaRepository, val kafk
     fun getMultimediaByTitle(title: String) = multimediaRepository.findAllByTitle(title)
 
     fun sendMultimedia(multimediaDto: MultimediaDto) {
-        kafkaTemplate.send("Test3", multimediaDto)
+        kafkaTemplate.send(KafkaTopicConfig.TEST_TOPIC, multimediaDto)
         logger.info {"Test send succesful"}
     }
 
