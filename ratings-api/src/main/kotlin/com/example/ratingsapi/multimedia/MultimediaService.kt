@@ -8,7 +8,10 @@ import org.springframework.stereotype.Service
 private val logger = KotlinLogging.logger {}
 
 @Service
-class MultimediaService(val multimediaRepository: MultimediaRepository, val kafkaTemplate: KafkaTemplate<String, MultimediaDto>) {
+class MultimediaService(
+    val multimediaRepository: MultimediaRepository,
+    val kafkaTemplate: KafkaTemplate<String, MultimediaDto>
+) {
 
     fun addMultimedia(multimediaDto: MultimediaDto) {
         val multimedia = Multimedia(multimediaDto)
@@ -19,7 +22,13 @@ class MultimediaService(val multimediaRepository: MultimediaRepository, val kafk
 
     fun sendMultimedia(multimediaDto: MultimediaDto) {
         kafkaTemplate.send(KafkaTopicConfig.TEST_TOPIC, multimediaDto)
-        logger.info {"Test send succesful"}
+        logger.info { "Test send succesful" }
     }
 
 }
+
+data class MultimediaDto(
+    val title: String,
+    val director: String,
+    val releaseDate: String
+)
