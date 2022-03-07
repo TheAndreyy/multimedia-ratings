@@ -1,15 +1,15 @@
-package com.example.ratingsapi.comment
+package com.example.ratingsworker.comment
 
 import org.springframework.data.annotation.Id
-import org.springframework.data.redis.core.RedisHash
-import java.time.ZonedDateTime
+import org.springframework.data.mongodb.core.mapping.Document
+import java.time.Instant
 
-@RedisHash("Comments")
-data class Comment(
+@Document(collection = "comments")
+class Comment(
     @Id
     var id: String?,
     var userName: String,
-    var creationDate: ZonedDateTime,
+    var creationDate: Instant,
     var body: String,
     var rating: Int
 ) {
@@ -17,7 +17,7 @@ data class Comment(
     constructor(commentDto: CommentDto) : this(
         null,
         commentDto.userName,
-        commentDto.creationDate,
+        commentDto.creationDate.toInstant(),
         commentDto.body,
         commentDto.rating
     )

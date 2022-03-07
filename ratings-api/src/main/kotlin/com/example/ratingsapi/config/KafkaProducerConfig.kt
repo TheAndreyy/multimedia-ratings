@@ -1,6 +1,5 @@
 package com.example.ratingsapi.config
 
-import com.example.ratingsapi.multimedia.MultimediaDto
 import org.apache.kafka.clients.producer.ProducerConfig
 import org.apache.kafka.common.serialization.StringSerializer
 import org.springframework.beans.factory.annotation.Value
@@ -24,13 +23,14 @@ class KafkaProducerConfig(
         config[ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG] = StringSerializer::class.java
         config[ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG] = JsonSerializer::class.java
         config[JsonSerializer.TYPE_MAPPINGS] = "multimedia:com.example.ratingsapi.multimedia.MultimediaDto"
+        config[JsonSerializer.TYPE_MAPPINGS] = "comment:com.example.ratingsapi.comment.CommentDto"
         return config
     }
 
     @Bean
-    fun producerFactory(): ProducerFactory<String, MultimediaDto> = DefaultKafkaProducerFactory(producerConfig())
+    fun producerFactory(): ProducerFactory<String, Any> = DefaultKafkaProducerFactory(producerConfig())
 
     @Bean
-    fun kafkaTemplate(producerFactory: ProducerFactory<String, MultimediaDto>) = KafkaTemplate(producerFactory)
+    fun kafkaTemplate(producerFactory: ProducerFactory<String, Any>) = KafkaTemplate(producerFactory)
 
 }

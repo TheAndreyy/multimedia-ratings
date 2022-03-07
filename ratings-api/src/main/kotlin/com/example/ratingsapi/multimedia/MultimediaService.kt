@@ -10,7 +10,7 @@ private val logger = KotlinLogging.logger {}
 @Service
 class MultimediaService(
     val multimediaRepository: MultimediaRepository,
-    val kafkaTemplate: KafkaTemplate<String, MultimediaDto>
+    val kafkaTemplate: KafkaTemplate<String, Any>
 ) {
 
     fun addMultimedia(multimediaDto: MultimediaDto) {
@@ -22,7 +22,7 @@ class MultimediaService(
 
     fun sendMultimedia(multimediaDto: MultimediaDto) {
         kafkaTemplate.send(KafkaTopicConfig.TEST_TOPIC, multimediaDto)
-        logger.info { "Test send succesful" }
+        logger.info { "Test send successfully" }
     }
 
 }

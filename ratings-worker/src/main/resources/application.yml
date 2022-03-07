@@ -1,5 +1,14 @@
 server:
     port: ${PORT:5001}
 spring:
+    data:
+        mongodb:
+            authentication-database: admin
+            username: root
+            password: pass
+            database: comments
+            host: localhost
+            port: 27017
+            auto-index-creation: true
     kafka:
         bootstrap-servers: localhost:9092

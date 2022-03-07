@@ -9,17 +9,17 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/comments")
-class CommentController(val commentRepository: CommentRepository) {
+class CommentController(val commentService: CommentService) {
 
     @PostMapping
-    fun addComment(@RequestBody comment: Comment): ResponseEntity<Void> {
-        commentRepository.save(comment)
+    fun addComment(@RequestBody commentDto: CommentDto): ResponseEntity<Void> {
+        commentService.addComment(commentDto)
         return ResponseEntity.accepted().build()
     }
 
     @GetMapping
     fun getComments(): ResponseEntity<Iterable<Comment>> {
-        val comments = commentRepository.findAll()
+        val comments = commentService.getComments()
         return ResponseEntity.ok().body(comments)
     }
 
